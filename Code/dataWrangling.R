@@ -30,7 +30,7 @@ invisible(lapply(list.of.packages, require, quietly = TRUE, warn.conflicts = FAL
 # Data wrangling ----------------------------------------------------------
 
 # Read data
-data_files <- paste0("dataWave", 1:9, "_cleaned.xlsx")
+data_files <- paste0("Data/dataWave", 1:9, "_cleaned.xlsx")
 data_list <- lapply(data_files, read_excel)
 
 # Select variables
@@ -219,7 +219,7 @@ dataWide <- dataWide[!duplicated.random(dataWide$id), ]
 
 
 # Save data
-write_xlsx(dataWide, "dataWide_woScores.xlsx")
+write_xlsx(dataWide, "Data/dataWide_woScores.xlsx")
 
 
 # Calculate scores --------------------------------------------------------
@@ -347,7 +347,7 @@ final_order <- c(original_order, new_order)
 dataWide <- dataWide[, final_order]
 
 # Save data
-write_xlsx(dataWide, "dataWide_wScores.xlsx")
+write_xlsx(dataWide, "Data/dataWide_wScores.xlsx")
 
 
 
@@ -454,7 +454,7 @@ data_for_heatmap <- select(dataWide, dep_t1:warStress_t9)
 cor_matrix <- cor(data_for_heatmap, use = "complete.obs")
 
 # Plot and save the correlogram
-png("correlogram.png", width = 3000, height = 3000)
+png("Plots/correlogram.png", width = 3000, height = 3000)
 my_colors <- colorRampPalette(c("#920000", "white", "#009292"))(100)
 corrplot(cor_matrix, method = "color", type = "upper", order = "original", col = my_colors,
          tl.col = "black", tl.srt = 45, addCoef.col = "black")
